@@ -11,8 +11,8 @@ package saleh_case_study;
         private final Integer MAX_CHANNELS = 6;
 
         Channel channels[];
-        private Integer currentFrequency;
-        private Integer currentVolume;
+        Integer currentFrequency;
+        Integer currentVolume;
         Band currentBand;
 
         final Integer MIN_FR_FM1 = 88 ;
@@ -26,7 +26,7 @@ package saleh_case_study;
 
             this.channels = channels;
             if(currentBand == Band.FM1 | currentBand == Band.FM2) {
-                while (currentFrequency>MIN_FR_FM1 || currentFrequency < MAX_FR_FM1) {
+                while (currentFrequency > MIN_FR_FM1 || currentFrequency < MAX_FR_FM1) {
                     this.currentFrequency = currentFrequency;
                 }
             }else if (currentBand == Band.AM){
@@ -44,41 +44,41 @@ package saleh_case_study;
 
 
         // getter method
-        public Integer getCurrentFrequency() {
-            return currentFrequency;
-        }
+    //    public Integer getCurrentFrequency() {
+    //        return currentFrequency;
+    //    }
 
         // setter method
-        public void setCurrentFrequency(Integer currentFrequency) {
-            this.currentFrequency = currentFrequency;
-        }
+    //    public void setCurrentFrequency(Integer currentFrequency) {
+    //        this.currentFrequency = currentFrequency;
+    //    }
 
         // getter method
-        public Integer getCurrentVolume() {
-            return currentVolume;
-        }
+    //    public Integer getCurrentVolume() {
+    //        return currentVolume;
+    //    }
 
         // setter method
-        public void setCurrentVolume(Integer currentVolume) {
-            this.currentVolume = currentVolume;
-        }
+    //    public void setCurrentVolume(Integer currentVolume) {
+    //        this.currentVolume = currentVolume;
+    //    }
         
 
         public void volumeUp() {
             currentVolume++;
         }
-        void volumeDown() {
+        public void volumeDown() {
             currentVolume--;
         }
 
-        void tuneUp() {
+        public void tuneUp() {
             currentFrequency++;
         }
-        void tuneDown() {
+        public void tuneDown() {
             currentFrequency--;
         }
 
-        void switchBand(Band band) {
+        public void switchBand(Band band) {
             currentBand = band;
         }
 
@@ -89,7 +89,7 @@ package saleh_case_study;
          * Seek left off due to complexity
          *
          */
-        void seekUp() {
+        public void seekUp() {
 
         //    Band b1 = Band.FM1;
         //    Band b2 = Band.FM2;
@@ -132,7 +132,7 @@ package saleh_case_study;
             }
 
 
-        void seekDown() {
+        public void seekDown() {
 
         //    switch(Band){
         //        case FM1: {
@@ -167,11 +167,11 @@ package saleh_case_study;
 
         }
 
-        void saveChannel(Integer position) {
+        public void saveChannel(Integer position) {
             if (position < MAX_CHANNELS ) {
                 Channel channel = new Channel(Band.FM1 , 88); //??????
                 channel.band = currentBand;
-                channel.frequency = currentFrequency;//??????
+                channel.getFrequency();
                 channels[position] = channel;
             }
         }
@@ -179,38 +179,5 @@ package saleh_case_study;
 
     }
 
-    /**
-     * Holds a channel's state
-     * TODO make fields private
-     * TODO add getters and setters
-     */
-    class Channel {
-        Band band;
-        final Integer MIN_FREQUENCY = 3;
-        final Integer MAX_FREQUNCY = 3000;
-        private Integer frequency;
 
 
-
-        // constructor
-        public Channel(Band band, Integer frequency) {
-            this.band = band;
-            this.frequency = frequency;
-        }
-
-        // getter method
-        public Integer getFrequency() {
-            return frequency;
-        }
-
-        // setter method
-        public void setFrequency(Integer frequency) {
-
-            if(frequency > MIN_FREQUENCY || frequency< MAX_FREQUNCY)
-            this.frequency = frequency;
-        }
-
-
-    }
-
-    enum Band {FM1,FM2,AM}
